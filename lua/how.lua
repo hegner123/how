@@ -1,14 +1,26 @@
--- lua/tips.lua
---
+----- Open the file in write mode
+local file = io.open("log.log", "w")
+
+-- Check if the file was successfully opened
+if file then
+    -- Write a string to the file
+    file:write("This is a log message.\n")
+
+    -- Close the file
+    file:close()
+
+    print("Log message written to log.log")
+else
+    print("Error opening file log.log")
+end
 ---@class How
----@field config setupHow
 local How = {}
 
 How.__index = How
 
 
 
-local the_How = How:new()
+local the_How = How
 
 ---@param self How
 ---@return How
