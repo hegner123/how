@@ -6,7 +6,7 @@ function how.setup()
             if cmd == "search" then
                 print("%s@search@replace@g")
             else
-            print("how")
+            print(cmd)
             end
         end,
         { desc = "Echoes the word 'how' to the command bar" }
