@@ -1,11 +1,11 @@
 -- lua/tips.lua
-local function how()
-  print("how")
+
+local function setupHow()
+vim.api.nvim_create_user_command("How",
+  function(cmd)
+return {    desc = "Echoes the word 'how' to the command bar"}
+end
+    )
 end
 
-vim.api.nvim_buf_create_user_command(
-  'How',
-  how,
-  {desc = "Echoes the word 'how' to the command bar"}
-)
-
+return setupHow
