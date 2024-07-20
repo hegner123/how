@@ -4,8 +4,8 @@ local function how()
 end
 
 vim.api.nvim_create_user_command(
-  'how', 
-  how, 
+  'How',
+  how,
   {desc = "Echoes the word 'how' to the command bar"}
 )
 
