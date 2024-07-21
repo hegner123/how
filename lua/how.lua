@@ -2,6 +2,22 @@ local how = {}
 local json = require("dkjson")
 local settings_path = vim.fn.stdpath('config') .. '/how_settings.json'
 
+local function ensure_dependencies()
+    local handle = io.popen("luarocks list dkjson")
+    local result;
+    if handle == nil then
+        return
+    else
+        result = handle:read("*a")
+        handle:close()
+    end
+
+    if not result:find("dkjson") then
+        print("dkjson not found. Installing...")
+        os.execute("luarocks install dkjson")
+    end
+end
+
 -- Function to read settings from the JSON file
 local function read_settings()
     local file = io.open(settings_path, 'r')
@@ -51,6 +67,7 @@ function how.delete_setting(key)
 end
 
 function how.setup()
+    ensure_dependencies()
     vim.api.nvim_create_user_command("How",
         function(opts)
             local arg1 = opts.args
