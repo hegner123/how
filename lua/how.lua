@@ -70,7 +70,7 @@ function how.setup()
     ensure_dependencies()
     vim.api.nvim_create_user_command("How",
         function(opts)
-            local arg1 = opts.args
+            local arg1 = opts.fargs[1]
 
             if arg1 == "search" then
                 print("%s@search@replace@g")
@@ -78,8 +78,12 @@ function how.setup()
                 print(arg1)
             end
         end,
-        {
-            desc = "Echoes the word 'how' to the command bar",
+         { nargs = 1,
+             complete = function(ArgLead, CmdLine, CursorPos)
+                -- return completion candidates as a list-like table
+                return { "foo", "bar", "baz" }
+            end,
+            desc = "Echos the command arg to command bar",
         }
     )
     vim.api.nvim_create_user_command("HowAdd",
@@ -90,6 +94,7 @@ function how.setup()
             print(arg1, arg2)
         end,
         {
+            nargs = 2,
             desc = "Add setting to user setting",
         }
     )
@@ -100,6 +105,7 @@ function how.setup()
             print(arg1)
         end,
         {
+            nargs = 1,
             desc = "Delete Settings"
         })
 end
