@@ -80,19 +80,17 @@ function how.setup()
         end,
         {
             desc = "Echoes the word 'how' to the command bar",
-            nargs = 1
         }
     )
     vim.api.nvim_create_user_command("HowAdd",
         function(opts)
-            local arg1 = opts.args[1]
-            local arg2 = opts.args[2]
+            local arg1 = opts.fargs[1]
+            local arg2 = opts.fargs[2]
 
             print(arg1, arg2)
         end,
         {
             desc = "Add setting to user setting",
-            args = 2
         }
     )
     vim.api.nvim_create_user_command("HowDelete",
