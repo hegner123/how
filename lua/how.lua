@@ -66,6 +66,14 @@ function how.delete_setting(key)
     end
 end
 
+local function split_by_whitespace(input)
+  local words = {}
+  for word in input:gmatch("%S+") do
+    table.insert(words, word)
+  end
+  return words
+end
+
 function how.setup()
     ensure_dependencies()
     vim.api.nvim_create_user_command("How",
@@ -88,10 +96,10 @@ function how.setup()
     )
     vim.api.nvim_create_user_command("HowAdd",
         function(opts)
-            local arg1 = opts.fargs[1]
-            local arg2 = opts.fargs[2]
+            local arg = opts.fargs[1]
+            local parsed = split_by_whitespace(arg)
 
-            print(arg1, arg2)
+            print(parsed[1],parsed[2])
         end,
         {
             nargs = 1,
