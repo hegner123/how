@@ -58,6 +58,7 @@ function how.setup()
             if arg1 == "search" then
                 print("%s@search@replace@g")
             else
+                print(arg1)
             end
         end,
         {
