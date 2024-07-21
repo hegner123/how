@@ -94,7 +94,7 @@ function how.setup()
             print(arg1, arg2)
         end,
         {
-            nargs = 2,
+            nargs = 1,
             desc = "Add setting to user setting",
         }
     )
