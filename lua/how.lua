@@ -1,5 +1,5 @@
 local how = {}
-local json = require("dkjson")
+local json = require("json")
 local settings_path = vim.fn.stdpath('config') .. '/how_settings.json'
 
 local function ensure_dependencies()
@@ -34,7 +34,7 @@ end
 local function write_settings(settings)
     local file = io.open(settings_path, 'w')
     if file then
-        file:write(json.encode(settings, { indent = true }))
+        file:write(json.encode(settings))
         file:close()
     else
         print('Error: Could not write to settings file')
