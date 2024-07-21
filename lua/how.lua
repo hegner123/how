@@ -92,7 +92,7 @@ function how.setup()
         end,
         {
             desc = "Add setting to user setting",
-            nargs = 2
+            args = 2
         }
     )
     vim.api.nvim_create_user_command("HowDelete",
