@@ -66,12 +66,18 @@ function how.delete_setting(key)
     end
 end
 
-local function split_by_whitespace(input)
-  local words = {}
-  for word in input:gmatch("%S+") do
-    table.insert(words, word)
-  end
-  return words
+local function extract_key_value(input)
+  local key, value = input:match('"(.-)"%s+"(.-)"')
+  return {key, value}
+end
+
+local function get_users_keys()
+    local settings = read_settings()
+    local keys = {}
+      for key, _ in pairs(settings) do
+        table.insert(keys, key)
+      end
+  return keys
 end
 
 function how.setup()
@@ -88,8 +94,9 @@ function how.setup()
         end,
          { nargs = 1,
              complete = function(ArgLead, CmdLine, CursorPos)
+                local keys = get_users_keys()
                 -- return completion candidates as a list-like table
-                return { "foo", "bar", "baz" }
+                return keys
             end,
             desc = "Echos the command arg to command bar",
         }
@@ -97,7 +104,7 @@ function how.setup()
     vim.api.nvim_create_user_command("HowAdd",
         function(opts)
             local arg = opts.fargs[1]
-            local parsed = split_by_whitespace(arg)
+            local parsed = extract_key_value(arg)
 
             print(parsed[1],parsed[2])
         end,
