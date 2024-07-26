@@ -73,7 +73,8 @@ end
                 print(arg1)
             end
         end,
-         { nargs = 1,
+         {
+            nargs = "?",
              complete = function(ArgLead, CmdLine, CursorPos)
                 local keys = get_users_keys()
             print(ArgLead)
