@@ -62,6 +62,8 @@ local function get_users_keys()
       end
   return keys
 end
+
+local function commands()
     vim.api.nvim_create_user_command("How",
         function(opts)
             local arg1 = opts.fargs[1]
@@ -105,4 +107,7 @@ end
         {
             nargs = 1,
             desc = "Delete Settings"
-        })
+        } )
+end
+
+return commands
