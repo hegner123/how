@@ -1,5 +1,6 @@
 local how = {}
 local commands = require("commands")
+local settings_path = vim.fn.stdpath('config') .. '/how_settings.json'
 
 local function ensure_dependencies()
     local handle = io.popen("luarocks list dkjson")
@@ -16,8 +17,38 @@ local function ensure_dependencies()
         os.execute("luarocks install dkjson")
     end
 end
+local function file_exists(filename)
+    local file = io.open(filename, "r")
+    if file then
+        file:close()
+        return true
+    else
+        return false
+    end
+end
+
+local function create_file(filename)
+    local file = io.open(filename, "w")
+    if file then
+        file:close()
+        print("File created: " .. filename)
+    else
+        print("Error creating file: " .. filename)
+    end
+end
+
+local function check_and_create_file(filename)
+    if not file_exists(filename) then
+        create_file(filename)
+    else
+        print("File already exists: " .. filename)
+    end
+end
+
+
 
 function how.setup()
+    check_and_create_file(settings_path)
     ensure_dependencies()
     commands(how)
 end
