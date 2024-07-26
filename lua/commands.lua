@@ -1,7 +1,8 @@
 local json = require("json")
 local settings_path = vim.fn.stdpath('config') .. '/how_settings.json'
-local how = require("how")
--- Function to read settings from the JSON file
+
+local function commands(how)
+-- Functiion to read settings from the JSON file
 local function read_settings()
     local file = io.open(settings_path, 'r')
     if file then
@@ -62,8 +63,6 @@ local function get_users_keys()
       end
   return keys
 end
-
-local function commands()
     vim.api.nvim_create_user_command("How",
         function(opts)
             local arg1 = opts.fargs[1]

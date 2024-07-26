@@ -18,9 +18,8 @@ local function ensure_dependencies()
 end
 
 function how.setup()
-    
     ensure_dependencies()
-    commands()
+    commands(how)
 end
 
 return how
