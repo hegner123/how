@@ -1,6 +1,6 @@
 local how = {}
 local commands = require("commands")
-local settings_path = vim.fn.stdpath('config') .. '/how_settings.json'
+local settings_path = vim.fn.stdpath('data') .. '/how_settings.json'
 
 local function ensure_dependencies()
     local handle = io.popen("luarocks list dkjson")
