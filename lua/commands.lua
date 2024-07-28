@@ -40,7 +40,7 @@ local function commands(how)
     vim.api.nvim_create_user_command("How",
         function(opts)
             print(actions.tableToString(opts))
-            if get_length(opts) < 2 then
+            if opts.count < 1 then
                 local result = actions.tableToString(get_users_keys())
                 print(result)
             else
