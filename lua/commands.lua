@@ -3,30 +3,14 @@ local settings_path = vim.fn.stdpath('config') .. '/how_settings.json'
 local actions = require("actions")
 
 local function commands(how)
-    local function get_length(var)
-        local var_type = type(var)
-        if var_type == "string" then
-            return #var
-        elseif var_type == "table" then
-            local count = 0
-            for _ in pairs(var) do
-                count = count + 1
-            end
-            return count
-        else
-            return nil -- Length is not defined for other types
-        end
-    end
-
-    -- Functiion to read settings from the JSON file
-
     local function extract_key_value(input)
         local key, value = input:match('"(.-)"%s+"(.-)"')
         return { key, value }
     end
 
+
     local function get_users_keys()
-        local settings = actions.read_settings("./demo.json")
+        local settings = actions.read_settings(settings_path)
         print(settings)
         local keys = {}
         for key, _ in pairs(settings) do
