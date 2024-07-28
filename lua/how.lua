@@ -1,4 +1,6 @@
 local how = {}
+local schema = require("schema")
+local actions = require("actions")
 local commands = require("commands")
 local settings_path = vim.fn.stdpath('data') .. '/how_settings.json'
 
@@ -40,6 +42,7 @@ end
 local function check_and_create_file(filename)
     if not file_exists(filename) then
         create_file(filename)
+        actions.write_settings(filename,schema)
     else
         print("File already exists: " .. filename)
     end
