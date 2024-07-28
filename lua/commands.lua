@@ -27,7 +27,7 @@ local function commands(how)
 
     local function get_users_keys()
         local settings = actions.read_settings("./demo.json")
-        print(actions.tableToString(settings))
+        print(settings)
         local keys = {}
         for key, _ in pairs(settings) do
             table.insert(keys, key)
