@@ -1,4 +1,3 @@
-local json = require("json")
 local settings_path = vim.fn.stdpath('config') .. '/how_settings.json'
 local actions = require("actions")
 
