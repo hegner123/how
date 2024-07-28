@@ -39,9 +39,9 @@ local function commands(how)
     ---------------------
     vim.api.nvim_create_user_command("How",
         function(opts)
-            print(actions.tableToString(opts))
             if opts.count < 1 then
-                local result = actions.tableToString(get_users_keys())
+                local keys = get_users_keys()
+                local result = actions.tableToString(keys)
                 print(result)
             else
                 local arg1 = opts.fargs[1]
