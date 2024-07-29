@@ -1,7 +1,7 @@
 local schema = require("schema")
 local actions = require("actions")
 local commands = require("commands")
-local settings_path = vim.fn.stdpath('data') .. '/how_settings.json'
+local settings_path = require("location")
 local how = {}
 
 local function ensure_dependencies()
