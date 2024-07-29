@@ -1,4 +1,3 @@
-local json = require("json")
 local schema = require("schema")
 local actions = require("actions")
 local commands = require("commands")

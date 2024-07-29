@@ -1,4 +1,4 @@
-local settings_path = vim.fn.stdpath('config') .. '/how_settings.json'
+local settings_path = vim.fn.stdpath('data') .. '/how_settings.json'
 local actions = require("actions")
 
 local function commands(how)
