@@ -1,8 +1,9 @@
-local how = {}
+local json = require("json")
 local schema = require("schema")
 local actions = require("actions")
 local commands = require("commands")
 local settings_path = vim.fn.stdpath('data') .. '/how_settings.json'
+local how = {}
 
 local function ensure_dependencies()
     local handle = io.popen("luarocks list dkjson")
@@ -19,6 +20,7 @@ local function ensure_dependencies()
         os.execute("luarocks install dkjson")
     end
 end
+
 local function file_exists(filename)
     local file = io.open(filename, "r")
     if file then
@@ -51,6 +53,7 @@ end
 
 
 function how.setup()
+    print(settings_path)
     check_and_create_file(settings_path)
     ensure_dependencies()
     commands(how)
