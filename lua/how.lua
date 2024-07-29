@@ -46,7 +46,6 @@ local function check_and_create_file(filename)
         create_file(filename)
         actions.write_settings(filename,schema)
     else
-        print("File already exists: " .. filename)
     end
 end
 

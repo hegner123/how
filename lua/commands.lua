@@ -26,8 +26,8 @@ local function commands(how)
         function(opts)
            -- if opts.count < 1 then
                 local keys = get_users_keys()
-                local result = actions.tableToString(keys)
-                print(result)
+              --  local result = actions.tableToString(keys)
+              --  print(result)
             --else
              --   local arg1 = opts.fargs[1]
              --   local result = actions.tableToString(how.get_setting(arg1))
