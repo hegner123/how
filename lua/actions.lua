@@ -4,8 +4,8 @@ local actions = {}
 -- Functiion to read settings from the JSON file
 function actions.read_settings(settings_path)
     local file = io.open(settings_path, 'r')
-    print(file)
     if file then
+        print(file:read("a"))
         local content = file:read('*a')
         file:close()
         return json.decode(content)
