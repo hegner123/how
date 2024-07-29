@@ -1,7 +1,7 @@
 local settings_path = require("location")
 local actions = require("actions")
 
-local function commands(how)
+local function commands()
     local function extract_key_value(input)
         local key, value = input:match('"(.-)"%s+"(.-)"')
         return { key, value }
@@ -10,7 +10,6 @@ local function commands(how)
 
     local function get_users_keys()
         local settings = actions.read_settings(settings_path)
-        print(settings)
         --local keys = {}
         --for key, _ in pairs(settings) do
             --table.insert(keys, key)
