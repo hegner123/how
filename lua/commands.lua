@@ -11,12 +11,12 @@ local function commands(how)
     local function get_users_keys()
         local settings = actions.read_settings(settings_path)
         print(settings)
-        local keys = {}
-        for key, _ in pairs(settings) do
-            table.insert(keys, key)
-        end
-        print(actions.tableToString(keys))
-        return keys
+        --local keys = {}
+        --for key, _ in pairs(settings) do
+            --table.insert(keys, key)
+        -- end
+        -- print(actions.tableToString(keys))
+        --return keys
     end
 
     ---------------------
