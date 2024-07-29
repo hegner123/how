@@ -8,7 +8,7 @@ function actions.read_settings(settings_path)
         print(file:read("a"))
         local content = file:read('a')
         file:close()
-        return json.decode(tostring(content))
+        return content
     else
         return {}
     end
