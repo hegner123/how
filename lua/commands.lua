@@ -23,6 +23,7 @@ local function commands()
         -- end
         -- print(actions.tableToString(keys))
         --return keys
+        return decoded
     end
 
     ---------------------
@@ -32,6 +33,7 @@ local function commands()
         function(opts)
            -- if opts.count < 1 then
                 local keys = get_users_keys()
+            print(keys)
               --  local result = actions.tableToString(keys)
               --  print(result)
             --else
