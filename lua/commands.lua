@@ -14,7 +14,8 @@ local function commands()
         if settings == nil or settings == '' then
             error("settings is empty or nil")
         end
-        local decoded = json.decode(settings)
+        local test = "{'test':'value'}"
+        local decoded = json.decode(test)
         print(decoded)
         --local keys = {}
         --for key, _ in pairs(settings) do
