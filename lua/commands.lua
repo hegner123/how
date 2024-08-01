@@ -1,6 +1,6 @@
 local settings_path = require("location")
 local actions = require("actions")
-local json = require("json")
+local JSON = require("JSON")
 
 local function commands()
     local function extract_key_value(input)
@@ -15,7 +15,7 @@ local function commands()
           --  error("settings is empty or nil")
         -- end
         local test = "{'test':'value'}"
-        local decoded = json.decode(test)
+        local decoded = JSON.decode(test)
         print(decoded)
         --local keys = {}
         --for key, _ in pairs(settings) do
@@ -45,12 +45,12 @@ local function commands()
         {
             nargs = "?",
             complete = function(ArgLead, CmdLine, CursorPos)
-                local keys = get_users_keys()
-                print(ArgLead)
-                print(CmdLine)
-                print(CursorPos)
+                --local keys = get_users_keys()
+                --print(ArgLead)
+                --print(CmdLine)
+                --print(CursorPos)
                 -- return completion candidates as a list-like table
-                return keys
+                -- return keys
             end,
             desc = "Echos the command arg to command bar",
         }
