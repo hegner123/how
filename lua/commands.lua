@@ -12,7 +12,7 @@ local function commands()
     local function get_users_keys()
         -- local settings = actions.read_settings(settings_path)
         -- if settings == nil or settings == '' then
-            error("settings is empty or nil")
+          --  error("settings is empty or nil")
         -- end
         local test = "{'test':'value'}"
         local decoded = json.decode(test)
