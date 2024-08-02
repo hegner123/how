@@ -1,6 +1,6 @@
 local settings_path = require("location")
 local actions = require("actions")
-local JSON = require("JSON")
+local json = require("json")
 
 local function commands()
     local function extract_key_value(input)
@@ -15,7 +15,7 @@ local function commands()
           --  error("settings is empty or nil")
         -- end
         local test = "{'test':'value'}"
-        local decoded = JSON.decode(test)
+        local decoded = json.decode(test)
         print(decoded)
         --local keys = {}
         --for key, _ in pairs(settings) do
