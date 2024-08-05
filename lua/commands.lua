@@ -16,9 +16,8 @@ local function commands()
           error("settings is empty or nil")
         end
         local decoded = JSON:decode(settings) -- decode example
-        print(decoded)
         local keys = {}
-        for key, _ in pairs(settings) do
+        for key, _ in pairs(decoded) do
             table.insert(keys, key)
         end
         print(actions.tableToString(keys))
