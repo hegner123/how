@@ -5,7 +5,6 @@ local actions = {}
 function actions.read_settings(settings_path)
     local file = io.open(settings_path, 'r')
     if file then
-        print(file:read("a"))
         local content = file:read('a')
         file:close()
         return content
