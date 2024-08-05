@@ -12,18 +12,17 @@ local function commands()
 
     local function get_users_keys()
         local settings = actions.read_settings(settings_path)
-        -- if settings == nil or settings == '' then
-        --  error("settings is empty or nil")
-        -- end
+        if settings == nil or settings == '' then
+          error("settings is empty or nil")
+        end
         local decoded = JSON:decode(settings) -- decode example
         print(decoded)
-        --local keys = {}
-        --for key, _ in pairs(settings) do
-        --table.insert(keys, key)
-        -- end
-        -- print(actions.tableToString(keys))
-        --return keys
-        return decoded
+        local keys = {}
+        for key, _ in pairs(settings) do
+        table.insert(keys, key)
+        end
+        print(actions.tableToString(keys))
+        return keys
     end
 
     ---------------------
