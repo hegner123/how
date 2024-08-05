@@ -1,6 +1,7 @@
 local settings_path = require("location")
 local actions = require("actions")
-local json = require("json")
+JSON = (loadfile "JSON.lua")() -- one-time load of the routines
+
 
 local function commands()
     local function extract_key_value(input)
@@ -12,14 +13,14 @@ local function commands()
     local function get_users_keys()
         -- local settings = actions.read_settings(settings_path)
         -- if settings == nil or settings == '' then
-          --  error("settings is empty or nil")
+        --  error("settings is empty or nil")
         -- end
         local test = "{'test':'value'}"
-        local decoded = json.decode(test)
+        local decoded = JSON:decode(test) -- decode example
         print(decoded)
         --local keys = {}
         --for key, _ in pairs(settings) do
-            --table.insert(keys, key)
+        --table.insert(keys, key)
         -- end
         -- print(actions.tableToString(keys))
         --return keys
@@ -31,15 +32,15 @@ local function commands()
     ---------------------
     vim.api.nvim_create_user_command("How",
         function(opts)
-           -- if opts.count < 1 then
-                local keys = get_users_keys()
+            -- if opts.count < 1 then
+            local keys = get_users_keys()
             print(keys)
-              --  local result = actions.tableToString(keys)
-              --  print(result)
+            --  local result = actions.tableToString(keys)
+            --  print(result)
             --else
-             --   local arg1 = opts.fargs[1]
-             --   local result = actions.tableToString(how.get_setting(arg1))
-             --   print(result)
+            --   local arg1 = opts.fargs[1]
+            --   local result = actions.tableToString(how.get_setting(arg1))
+            --   print(result)
             --end
         end,
         {
