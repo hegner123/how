@@ -19,7 +19,7 @@ local function commands()
         print(decoded)
         local keys = {}
         for key, _ in pairs(settings) do
-        table.insert(keys, key)
+            table.insert(keys, key)
         end
         print(actions.tableToString(keys))
         return keys
