@@ -17,7 +17,7 @@ local function commands()
         --end
         local decoded = JSON:decode(settings) -- decode example
         local keys = {}
-        for key, _ in pairs(decoded) do
+        for key, _ in pairs(decoded.definitions) do
             table.insert(keys, key)
         end
         print(actions.tableToString(keys))
