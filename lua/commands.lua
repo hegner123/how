@@ -20,7 +20,6 @@ local function commands()
         for key, _ in pairs(decoded.definitions) do
             table.insert(keys, key)
         end
-        print(actions.tableToString(keys))
         return keys
     end
 
@@ -31,9 +30,8 @@ local function commands()
         function(opts)
             -- if opts.count < 1 then
             local keys = get_users_keys()
-            print(keys)
-            --  local result = actions.tableToString(keys)
-            --  print(result)
+            local result = actions.tableToString(keys)
+            print(result)
             --else
             --   local arg1 = opts.fargs[1]
             --   local result = actions.tableToString(how.get_setting(arg1))
