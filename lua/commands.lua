@@ -9,13 +9,9 @@ local function commands()
         return { key, value }
     end
 
-
     local function get_users_keys()
         local settings = actions.read_settings(settings_path)
-        --if settings == nil or settings == '' then
-        --  error("settings is empty or nil")
-        --end
-        local decoded = JSON:decode(settings) -- decode example
+        local decoded = JSON:decode(settings)
         local keys = {}
         for key, _ in pairs(decoded.definitions) do
             table.insert(keys, key)
@@ -28,19 +24,19 @@ local function commands()
     ---------------------
     vim.api.nvim_create_user_command("How",
         function(opts)
-            -- if opts.count < 1 then
-            local keys = get_users_keys()
-            local result = actions.tableToString(keys)
-            print(result)
-            --else
-            --   local arg1 = opts.fargs[1]
-            --   local result = actions.tableToString(how.get_setting(arg1))
-            --   print(result)
-            --end
+            if opts.count < 1 then
+                local keys = get_users_keys()
+                local result = actions.tableToString(keys)
+                print(result)
+            else
+                local arg1 = opts.fargs[1]
+                local result = actions.tableToString(actions.get_setting(arg1))
+                print(result)
+            end
         end,
         {
             nargs = "?",
-            complete = function(ArgLead, CmdLine, CursorPos)
+            complete = function()
                 --local keys = get_users_keys()
                 --print(ArgLead)
                 --print(CmdLine)
