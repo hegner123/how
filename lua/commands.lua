@@ -1,6 +1,6 @@
 local settings_path = require("location")
 local actions = require("actions")
-JSON = (loadfile "JSON.lua")() -- one-time load of the routines
+JSON = (loadfile "./JSON.lua")() -- one-time load of the routines
 
 
 local function commands()
