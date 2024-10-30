@@ -1,10 +1,10 @@
-local module = require("how.module")
 local sqlite3 = require("lsqlite3complete")
+local actions = require("how.actions")
+local schema = require("how.schema")
 
 ---@class Config
----@field opt string Your config option
+---@field sqlitePath string Location of lsqlite3complete.so file
 local config = {
-    opt = "Hello!",
     sqlitePath = "",
 }
 ---@class MyModule
@@ -13,9 +13,12 @@ local How = {}
 ---@type Config
 How.config = config
 
-print(config.sqlitePath)
+How.db = sqlite3.open("how.db")
 
-sqlite3.open("test.db")
+local res = How.db:exec(schema.table)
+print(res)
+
+How.actions = actions;
 
 
 ---@param args Config?
@@ -25,8 +28,5 @@ How.setup = function(args)
     How.config = vim.tbl_deep_extend("force", How.config, args or {})
 end
 
-How.hello = function()
-    return module.greet(How.config.opt)
-end
 
 return How

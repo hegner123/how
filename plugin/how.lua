@@ -1,1 +1,1 @@
-vim.api.nvim_create_user_command("Greet", require("how").hello, {})
+vim.api.nvim_create_user_command("HowAdd", require("how").Add.Definition, {})

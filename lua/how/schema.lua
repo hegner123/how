@@ -1,8 +1,21 @@
 local schema = {}
 
-schema["definitions"] = {}
+schema.term = ""
+schema.keywords = ""
+schema.frequency = 0
+schema.definition = ""
+local schemaTable = [=[
+CREATE TABLE definitions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    term TEXT NOT NULL,
+    keywords TEXT NOT NULL,
+    frequency INTEGER DEFAULT 0,
+    definition TEXT NOT NULL
+);
+INSERT INTO definitions (term,keywords,frequency,definition) VALUES
+(replace,find'and'replace',0,':s@search@replace@g5');
+]=]
 
-local definitions = schema["definitions"]
-definitions["example"] = "Describe action here"
+schema.table = schemaTable
 
 return schema
