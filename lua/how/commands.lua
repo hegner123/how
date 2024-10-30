@@ -1,6 +1,4 @@
-local settings_path = require("location")
-local actions = require("actions")
-JSON = (loadfile "./JSON.lua")() -- one-time load of the routines
+local actions = require("how.actions")
 
 
 local function commands()
@@ -10,13 +8,6 @@ local function commands()
     end
 
     local function get_users_keys()
-        local settings = actions.read_settings(settings_path)
-        local decoded = JSON:decode(settings)
-        local keys = {}
-        for key, _ in pairs(decoded.definitions) do
-            table.insert(keys, key)
-        end
-        return keys
     end
 
     ---------------------
@@ -26,11 +17,11 @@ local function commands()
         function(opts)
             if opts.count < 1 then
                 local keys = get_users_keys()
-                local result = actions.tableToString(keys)
+                local result = Fmt.tableToString(keys)
                 print(result)
             else
                 local arg1 = opts.fargs[1]
-                local result = actions.tableToString(actions.get_setting(arg1))
+                local result = Fmt.tableToString(actions.get_setting(arg1))
                 print(result)
             end
         end,
@@ -47,18 +38,19 @@ local function commands()
             desc = "Echos the command arg to command bar",
         }
     )
+
     vim.api.nvim_create_user_command("HowAdd",
         function(opts)
             local arg = opts.fargs[1]
-            local parsed = extract_key_value(arg)
 
-            print(parsed[1], parsed[2])
         end,
         {
             nargs = 1,
             desc = "Add setting to user setting",
         }
     )
+
+
     vim.api.nvim_create_user_command("HowDelete",
         function(opts)
             local arg1 = opts.args

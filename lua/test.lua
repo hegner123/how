@@ -1,5 +1,5 @@
 local demo_path = "./demo.json"
-local actions = require("actions")
+local actions = require("lua.how.actions")
 local demo_append = {}
 demo_append["test"] = "test value"
 

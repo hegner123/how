@@ -1,60 +1,33 @@
-local schema = require("schema")
-local actions = require("actions")
-local commands = require("commands")
-local settings_path = require("location")
-local how = {}
 
-local function ensure_dependencies()
-    local handle = io.popen("luarocks list dkjson")
-    local result;
-    if handle == nil then
-        return
-    else
-        result = handle:read("*a")
-        handle:close()
-    end
+local module = require("how.module")
+local sqlite3 = require("lsqlite3complete")
 
-    if not result:find("dkjson") then
-        print("dkjson not found. Installing...")
-        os.execute("luarocks install dkjson")
-    end
+---@class Config
+---@field opt string Your config option
+local config = {
+  opt = "Hello!",
+    sqlitePath = "",
+}
+---@class MyModule
+local How = {}
+
+---@type Config
+How.config = config
+
+print(config.sqlitePath)
+
+sqlite3.open("test.db")
+
+
+---@param args Config?
+-- you can define your setup function here. Usually configurations can be merged, accepting outside params and
+-- you can also put some validation here for those.
+How.setup = function(args)
+  How.config = vim.tbl_deep_extend("force", How.config, args or {})
 end
 
-local function file_exists(filename)
-    local file = io.open(filename, "r")
-    if file then
-        file:close()
-        return true
-    else
-        return false
-    end
+How.hello = function()
+  return module.greet(How.config.opt)
 end
 
-local function create_file(filename)
-    local file = io.open(filename, "w")
-    if file then
-        file:close()
-        print("File created: " .. filename)
-    else
-        print("Error creating file: " .. filename)
-    end
-end
-
-local function check_and_create_file(filename)
-    if not file_exists(filename) then
-        create_file(filename)
-        actions.write_settings(filename,schema)
-    else
-    end
-end
-
-
-
-function how.setup()
-    print(settings_path)
-    check_and_create_file(settings_path)
-    ensure_dependencies()
-    commands(how)
-end
-
-return how
+return How
