@@ -46,3 +46,35 @@ frequency : 0    ,
 definition : test
   }
 }
+{
+  1 : {
+    id : 1    ,
+definition : :s@search@replace@g5    ,
+term : replace    ,
+frequency : 0    ,
+keywords : find and replace
+  }  ,
+2 : {
+    id : 39    ,
+definition : test    ,
+term : test    ,
+frequency : 0    ,
+keywords : test
+  }
+}
+{
+  1 : {
+    term : replace    ,
+keywords : find and replace    ,
+frequency : 0    ,
+id : 1    ,
+definition : :s@search@replace@g5
+  }  ,
+2 : {
+    term : test    ,
+keywords : test    ,
+frequency : 0    ,
+id : 40    ,
+definition : test
+  }
+}

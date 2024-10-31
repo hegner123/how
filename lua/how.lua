@@ -1,3 +1,5 @@
+---@module 'lua.lsp.sqlite3_lsp'
+---@type sqlite3
 local sqlite3 = require("lsqlite3complete")
 local actions = require("how.actions")
 local schema = require("how.schema")
@@ -7,20 +9,15 @@ local schema = require("how.schema")
 local config = {
     sqlitePath = "",
 }
----@class MyModule
-local How = {}
+---@class How
+---@field db sqlite3_db
+How = {}
+How.__index = How
 
 ---@type Config
 How.config = config
-
 How.db = sqlite3.open("how.db")
 
-local res = How.db:exec(schema.table)
-if res ~= sqlite3.OK then
-    print("SQL Error", How.db:errmsg())
-else
-    print("SQL statements executed successfully")
-end
 
 How.actions = actions;
 
@@ -32,5 +29,6 @@ How.setup = function(args)
     How.config = vim.tbl_deep_extend("force", How.config, args or {})
 end
 
+How.db:close()
 
 return How
