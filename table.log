@@ -1,0 +1,48 @@
+{
+  1 = {
+    term = replace    ,
+keywords = find and replace    ,
+frequency = 0    ,
+definition = :s@search@replace@g5    ,
+id = 1
+  }  ,
+2 = {
+    term = test    ,
+keywords = test    ,
+frequency = 0    ,
+definition = test    ,
+id = 35
+  }
+}
+{
+  1 :{
+    id :1    ,
+definition ::s@search@replace@g5    ,
+term :replace    ,
+frequency :0    ,
+keywords :find and replace
+  }  ,
+2 :{
+    id :36    ,
+definition :test    ,
+term :test    ,
+frequency :0    ,
+keywords :test
+  }
+}
+{
+  1 : {
+    id : 1    ,
+term : replace    ,
+keywords : find and replace    ,
+frequency : 0    ,
+definition : :s@search@replace@g5
+  }  ,
+2 : {
+    id : 38    ,
+term : test    ,
+keywords : test    ,
+frequency : 0    ,
+definition : test
+  }
+}

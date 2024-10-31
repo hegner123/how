@@ -16,7 +16,11 @@ How.config = config
 How.db = sqlite3.open("how.db")
 
 local res = How.db:exec(schema.table)
-print(res)
+if res ~= sqlite3.OK then
+    print("SQL Error", How.db:errmsg())
+else
+    print("SQL statements executed successfully")
+end
 
 How.actions = actions;
 
