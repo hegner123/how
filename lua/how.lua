@@ -2,7 +2,6 @@
 ---@type sqlite3
 local sqlite3 = require("lsqlite3complete")
 local actions = require("how.actions")
-local schema = require("how.schema")
 
 ---@class Config
 ---@field sqlitePath string Location of lsqlite3complete.so file

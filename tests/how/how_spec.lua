@@ -1,4 +1,4 @@
-local how = require("how")
+local how = require("lua.how")
 
 describe("database", function()
     it("can find sqlite package", function()
