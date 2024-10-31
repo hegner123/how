@@ -15,7 +15,7 @@ How.__index = How
 
 ---@type Config
 How.config = config
-How.db = sqlite3.open("how.db")
+How.db = sqlite3.open("~/.local/share/nvim/how.db")
 
 
 How.actions = actions;
