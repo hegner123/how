@@ -2,6 +2,7 @@
 ---@type sqlite3
 local sqlite3 = require("lsqlite3complete")
 local actions = require("how.actions")
+local schema = require("how.schema")
 
 ---@class Config
 ---@field sqlitePath string Location of lsqlite3complete.so file
@@ -15,8 +16,20 @@ How.__index = How
 
 ---@type Config
 How.config = config
-How.db = sqlite3.open("~/.local/share/nvim/how.db")
 
+-- Expand home directory path
+local home = os.getenv("HOME") or ""
+local db_path = home .. "/.local/share/nvim/how.db"
+
+-- Ensure the directory exists
+vim.fn.mkdir(vim.fn.fnamemodify(db_path, ":h"), "p")
+
+How.db = sqlite3.open(db_path)
+
+-- Initialize database schema
+if How.db then
+    How.db:exec(schema.table)
+end
 
 How.actions = actions;
 
@@ -27,7 +40,5 @@ How.actions = actions;
 How.setup = function(args)
     How.config = vim.tbl_deep_extend("force", How.config, args or {})
 end
-
-How.db:close()
 
 return How

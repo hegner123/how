@@ -41,4 +41,4 @@ luac.out
 
 vendor/plenary.nvim
 CLAUDE.md
-
+.claude/

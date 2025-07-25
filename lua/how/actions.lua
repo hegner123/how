@@ -1,4 +1,5 @@
 local schema = require("how.schema")
+local sqlite3 = require("lsqlite3complete")
 
 local actions = {}
 
@@ -19,8 +20,9 @@ function actions.getDefinition(term)
         return 0
     end
 
-    local sql = "SELECT * FROM definitions WHERE term=" .. term .. ";"
+    local sql = "SELECT * FROM definitions WHERE term='" .. term .. "';"
 
+    local How = require("how")
     local result = How.db:exec(sql, Showrow, 'test_udata')
     if result ~= sqlite3.OK then
         print("SQL Error", How.db:errmsg())
@@ -38,15 +40,16 @@ end
 ---@return number return code
 function actions.insertDefinition(term,keywords,definition)
 local sep = "','"
-    local sql = "INSERT INTO definitions (term,keywords,definition) VALUES ('"..term..sep..keywords..sep..definition"');"
+    local sql = "INSERT INTO definitions (term,keywords,definition) VALUES ('"..term..sep..keywords..sep..definition.."');"
 
-    local result = How.db:exec(sql, Showrow, 'test_udata')
+    local How = require("how")
+    local result = How.db:exec(sql)
     if result ~= sqlite3.OK then
         print("SQL Error", How.db:errmsg())
-        return sqlite3.OK
+        return result
     else
         print("SQL statements executed successfully")
-        return sqlite3.ERROR
+        return sqlite3.OK
     end
 
 end
@@ -57,8 +60,10 @@ end
 ---@return string result or errmsg
 function actions.deleteDefinition(term)
 local sep = "','"
-    local sql = "DELETE FROM definitions WHERE term="..term..";"
-    local res = How.db.exec(sql)
+    local sql = "DELETE FROM definitions WHERE term='"..term.."';"
+    local How = require("how")
+    local res = How.db:exec(sql)
+    return res
 end
 
 return actions

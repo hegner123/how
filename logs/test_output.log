@@ -1,12 +1,14 @@
 Starting...	
-Scheduling: tests//how/how_spec.lua
+Scheduling: tests/how/how_spec.lua
 
 ========================================	
 Testing: 	/Users/home/Documents/Code/how/tests/how/how_spec.lua	
-SQL Error	UNIQUE constraint failed: definitions.term	
 [32mSuccess[0m	||	database can find sqlite package	
 [32mSuccess[0m	||	database can read sqlitepath	
+SQL statements executed successfully	
 [32mSuccess[0m	||	database can insert values	
+SQL statements executed successfully	
+SQL statements executed successfully	
 [32mSuccess[0m	||	database can read sql	
 [32mSuccess[0m	||	database can delete values	
 	
