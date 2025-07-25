@@ -3,16 +3,38 @@ Scheduling: tests/how/how_spec.lua
 
 ========================================	
 Testing: 	/Users/home/Documents/Code/how/tests/how/how_spec.lua	
-[32mSuccess[0m	||	database can find sqlite package	
-[32mSuccess[0m	||	database can read sqlitepath	
-SQL statements executed successfully	
-[32mSuccess[0m	||	database can insert values	
-SQL statements executed successfully	
-SQL statements executed successfully	
-[32mSuccess[0m	||	database can read sql	
-[32mSuccess[0m	||	database can delete values	
+[32mSuccess[0m	||	How Plugin main module setup can be required without errors	
+[32mSuccess[0m	||	How Plugin main module setup has database connection	
+[32mSuccess[0m	||	How Plugin main module setup can setup configuration	
+[32mSuccess[0m	||	How Plugin main module setup exports actions module	
+[32mSuccess[0m	||	How Plugin database operations can insert definition	
+[32mSuccess[0m	||	How Plugin database operations can read specific definition	
+[32mSuccess[0m	||	How Plugin database operations can read all definitions	
+[32mSuccess[0m	||	How Plugin database operations can delete definition	
+[32mSuccess[0m	||	How Plugin database operations handles invalid parameters gracefully	
+[32mSuccess[0m	||	How Plugin database operations handles non-existent term queries	
+[32mSuccess[0m	||	How Plugin database operations handles duplicate term insertion	
+[32mSuccess[0m	||	How Plugin direct actions module getDefinition works with valid database	
+[32mSuccess[0m	||	How Plugin direct actions module getDefinition handles nil database	
+[32mSuccess[0m	||	How Plugin direct actions module insertDefinition validates parameters	
+[32mSuccess[0m	||	How Plugin direct actions module deleteDefinition validates parameters	
+[32mSuccess[0m	||	How Plugin schema module contains table creation SQL	
+[32mSuccess[0m	||	How Plugin schema module has default schema fields	
+[32mSuccess[0m	||	How Plugin format utilities can compare tables deeply	
+[32mSuccess[0m	||	How Plugin format utilities can compare non-table values	
+[32mSuccess[0m	||	How Plugin format utilities can convert table to string	
+[32mSuccess[0m	||	How Plugin format utilities handles empty table conversion	
+[32mSuccess[0m	||	How Plugin format utilities handles nested table conversion	
+[32mSuccess[0m	||	How Plugin user commands integration How command exists	
+[32mSuccess[0m	||	How Plugin user commands integration HowAdd command exists	
+[32mSuccess[0m	||	How Plugin user commands integration HowDelete command exists	
+[32mSuccess[0m	||	How Plugin user commands integration commands have proper configuration	
+[32mSuccess[0m	||	How Plugin database persistence maintains data across operations	
+[32mSuccess[0m	||	How Plugin database persistence handles concurrent operations	
+[32mSuccess[0m	||	How Plugin error handling handles database connection issues gracefully	
+[32mSuccess[0m	||	How Plugin error handling handles malformed SQL gracefully	
 	
-[32mSuccess: [0m	5	
+[32mSuccess: [0m	30	
 [31mFailed : [0m	0	
 [31mErrors : [0m	0	
 ========================================	

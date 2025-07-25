@@ -1,4 +1,4 @@
-local actions = require("how.actions")
+local format = require("how.format")
 
 
 local function commands()
@@ -15,14 +15,23 @@ local function commands()
     ---------------------
     vim.api.nvim_create_user_command("How",
         function(opts)
-            if opts.count < 1 then
-                local keys = get_users_keys()
-                local result = Fmt.tableToString(keys)
-                print(result)
+            local How = require("how")
+            if #opts.fargs == 0 then
+                -- Show all definitions
+                local result, err = How.getDefinition("")
+                if err then
+                    print("Error: " .. err)
+                else
+                    print(format.tableToString(result or {}))
+                end
             else
-                local arg1 = opts.fargs[1]
-                local result = Fmt.tableToString(actions.get_setting(arg1))
-                print(result)
+                local term = opts.fargs[1]
+                local result, err = How.getDefinition(term)
+                if err then
+                    print("Error: " .. err)
+                else
+                    print(format.tableToString(result or {}))
+                end
             end
         end,
         {
@@ -41,25 +50,49 @@ local function commands()
 
     vim.api.nvim_create_user_command("HowAdd",
         function(opts)
-            local arg = opts.fargs[1]
-
+            local How = require("how")
+            if #opts.fargs < 2 then
+                print("Usage: HowAdd <term> <definition>")
+                return
+            end
+            
+            local term = opts.fargs[1]
+            local definition = table.concat(opts.fargs, " ", 2)
+            local keywords = "" -- Could be extracted from definition or set separately
+            
+            local success, err = How.insertDefinition(term, keywords, definition)
+            if success then
+                print("Added definition for: " .. term)
+            else
+                print("Error adding definition: " .. (err or "unknown error"))
+            end
         end,
         {
-            nargs = 1,
-            desc = "Add setting to user setting",
+            nargs = "+",
+            desc = "Add command definition",
         }
     )
 
 
     vim.api.nvim_create_user_command("HowDelete",
         function(opts)
-            local arg1 = opts.args
-
-            print(arg1)
+            local How = require("how")
+            if #opts.fargs == 0 then
+                print("Usage: HowDelete <term>")
+                return
+            end
+            
+            local term = opts.fargs[1]
+            local success, err = How.deleteDefinition(term)
+            if success then
+                print("Deleted definition for: " .. term)
+            else
+                print("Error deleting definition: " .. (err or "unknown error"))
+            end
         end,
         {
             nargs = 1,
-            desc = "Delete Settings"
+            desc = "Delete command definition"
         })
 end
 

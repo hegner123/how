@@ -1,4 +1,7 @@
+---@module 'how'
+---@module 'vim'
 ---@module 'lua.lsp.sqlite3_lsp'
+
 ---@type sqlite3
 local sqlite3 = require("lsqlite3complete")
 local actions = require("how.actions")
@@ -31,8 +34,21 @@ if How.db then
     How.db:exec(schema.table)
 end
 
-How.actions = actions;
+-- Wrapper functions that pass db to actions
+How.getDefinition = function(term)
+    return actions.getDefinition(How.db, term)
+end
 
+How.insertDefinition = function(term, keywords, definition)
+    return actions.insertDefinition(How.db, term, keywords, definition)
+end
+
+How.deleteDefinition = function(term)
+    return actions.deleteDefinition(How.db, term)
+end
+
+-- Export actions module for testing
+How.actions = actions
 
 ---@param args Config?
 -- you can define your setup function here. Usually configurations can be merged, accepting outside params and
