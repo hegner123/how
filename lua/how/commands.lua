@@ -22,7 +22,7 @@ local function commands()
                 if err then
                     print("Error: " .. err)
                 else
-                    print(format.tableToString(result or {}))
+                    print(format.formatKeyDefinition(result or {}))
                 end
             else
                 local term = opts.fargs[1]
@@ -30,7 +30,7 @@ local function commands()
                 if err then
                     print("Error: " .. err)
                 else
-                    print(format.tableToString(result or {}))
+                    print(format.formatKeyDefinition(result or {}))
                 end
             end
         end,

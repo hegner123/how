@@ -63,5 +63,20 @@ function Fmt.tableToString(tbl, indent)
     return result
 end
 
+function Fmt.formatKeyDefinition(tbl)
+    if not tbl or type(tbl) ~= "table" or #tbl == 0 then
+        return "No definitions found"
+    end
+    
+    local result = {}
+    for _, row in ipairs(tbl) do
+        if row.term and row.definition then
+            table.insert(result, row.term .. ": " .. row.definition)
+        end
+    end
+    
+    return table.concat(result, "\n")
+end
+
 
 return Fmt
